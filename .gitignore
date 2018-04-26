@@ -1,0 +1,15 @@
+# Eclipse
+.classpath
+.project
+.settings
+.settings/*
+
+# Mac
+.DS_Store
+
+# Maven
+log/*
+target/*
+
+# Netbeans
+nb-configuration.xml
