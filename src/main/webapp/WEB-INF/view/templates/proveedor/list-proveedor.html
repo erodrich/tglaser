@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>User page</title>
+</head>
+
+<body>
+<h1 th:text="${titulo}">Sin titulo</h1>
+		<div id="content">
+
+			<!--  add our html table here -->
+
+			<table>
+				<tr>
+					<th>id</th>
+					<th>Ruc</th>
+					<th>Nombre</th>
+				</tr>
+				<tr th:each="proveedor: ${proveedores}">
+					<td th:text="${proveedor.id}">a</td>
+					<td th:text="${proveedor.ruc}">b</td>
+					<td th:text="${proveedor.nombre}">c</td>
+				</tr>
+
+
+			</table>
+
+		</div>
+
+</body>
+
+
+</html>

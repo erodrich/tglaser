@@ -13,3 +13,4 @@ target/*
 
 # Netbeans
 nb-configuration.xml
+/target/

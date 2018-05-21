@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 5.7.19, for macos10.12 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.11, for Win64 (x86_64)
 --
 -- Host: localhost    Database: tglaser
 -- ------------------------------------------------------
--- Server version	5.7.19
+-- Server version	8.0.11
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+ SET NAMES utf8mb4 ;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -29,7 +29,7 @@ USE `tglaser`;
 
 DROP TABLE IF EXISTS `authorities`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `authorities` (
   `username` varchar(50) NOT NULL,
   `authority` varchar(50) NOT NULL,
@@ -49,12 +49,68 @@ INSERT INTO `authorities` VALUES ('john','ROLE_EMPLOYEE'),('mary','ROLE_EMPLOYEE
 UNLOCK TABLES;
 
 --
+-- Table structure for table `contactos`
+--
+
+DROP TABLE IF EXISTS `contactos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `contactos` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `telefono` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `contactos`
+--
+
+LOCK TABLES `contactos` WRITE;
+/*!40000 ALTER TABLE `contactos` DISABLE KEYS */;
+INSERT INTO `contactos` VALUES (1,'Eric Rodrich','acron.bn@gmial.cim','98765431');
+/*!40000 ALTER TABLE `contactos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `proveedores`
+--
+
+DROP TABLE IF EXISTS `proveedores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `proveedores` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ruc` varchar(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `descripcion` varchar(200) DEFAULT NULL,
+  `direccion` varchar(200) DEFAULT NULL,
+  `Contactos_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_Proveedores_Contactos1_idx` (`Contactos_id`),
+  CONSTRAINT `fk_Proveedores_Contactos1` FOREIGN KEY (`Contactos_id`) REFERENCES `contactos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `proveedores`
+--
+
+LOCK TABLES `proveedores` WRITE;
+/*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
+INSERT INTO `proveedores` VALUES (1,'10411388820','Eric Rodrich','Yo mismo','mi casa',1);
+/*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
@@ -82,4 +138,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-26 17:11:28
+-- Dump completed on 2018-05-20 22:29:15
